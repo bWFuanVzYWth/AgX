@@ -22,5 +22,4 @@ $$
 So, This is the analytical formula of AgX. This is not an approximate value, but an exact value. The complexity of expressions mainly comes from coefficients, and the computational cost in real-time rendering is actually acceptable (At least better than a lookup table). The coefficients have been calculated as machine precision floating-point numbers, some of them came from original AgX, some of them, some of them were calculated by me using Wolfram Mathematica. The significant digits of all coefficients exceed single precision floating-point numbers.  
 
 ## TODO
-1. The code was not optimized, and I tried to eliminate branches, but it caused it to not work properly. I'll deal with it when I have free time, not now.
-2. LookTransform: "Golden", "Punchy"
+1. LookTransform: "Golden", "Punchy"
