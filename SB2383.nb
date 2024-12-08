@@ -1,0 +1,333 @@
+(* Content-type: application/vnd.wolfram.cdf.text *)
+
+(*** Wolfram CDF File ***)
+(* http://www.wolfram.com/cdf *)
+
+(* CreatedBy='Wolfram 14.1' *)
+
+(*************************************************************************)
+(*                                                                       *)
+(*                                                                       *)
+(*  This file was created under the Wolfram Enterprise licensing terms.  *)
+(*                                                                       *)
+(*       For additional information concerning CDF licensing see:        *)
+(*                                                                       *)
+(*        www.wolfram.com/cdf/adopting-cdf/licensing-options.html        *)
+(*                                                                       *)
+(*                                                                       *)
+(*                                                                       *)
+(*************************************************************************)
+
+(*CacheID: 234*)
+(* Internal cache information:
+NotebookFileLineBreakTest
+NotebookFileLineBreakTest
+NotebookDataPosition[      1060,         20]
+NotebookDataLength[     12577,        312]
+NotebookOptionsPosition[     13106,        310]
+NotebookOutlinePosition[     13522,        327]
+CellTagsIndexPosition[     13479,        324]
+WindowFrame->Normal*)
+
+(* Beginning of Notebook Content *)
+Notebook[{
+Cell[BoxData[
+ RowBox[{
+  RowBox[{"(*", 
+   RowBox[{"Agx", " ", "Config"}], "*)"}], "\[IndentingNewLine]", 
+  RowBox[{
+   RowBox[{
+    RowBox[{"kAgXMinEV", "=", 
+     RowBox[{"Rationalize", "[", 
+      RowBox[{"-", "10.0"}], "]"}]}], ";"}], "\n", 
+   RowBox[{
+    RowBox[{"kAgXMaxEV", "=", 
+     RowBox[{"Rationalize", "[", 
+      RowBox[{"+", "6.5"}], "]"}]}], ";"}], "\n", 
+   RowBox[{
+    RowBox[{"kAgXXPivot", "=", 
+     RowBox[{"Abs", "[", 
+      RowBox[{"kAgXMinEV", "/", 
+       RowBox[{"(", 
+        RowBox[{"kAgXMaxEV", "-", "kAgXMinEV"}], ")"}]}], "]"}]}], ";"}], 
+   "\n", 
+   RowBox[{
+    RowBox[{"kAgXYPivot", "=", 
+     RowBox[{"Rationalize", "[", "0.50", "]"}]}], ";"}], 
+   "\[IndentingNewLine]", 
+   RowBox[{
+    RowBox[{"kLimitsContrast1", "=", 
+     RowBox[{"Rationalize", "[", "3.0", "]"}]}], ";"}], "\[IndentingNewLine]", 
+   RowBox[{
+    RowBox[{"kLimitsContrast2", "=", 
+     RowBox[{"Rationalize", "[", "3.25", "]"}]}], ";"}], 
+   "\[IndentingNewLine]", 
+   RowBox[{
+    RowBox[{"kGeneralContrast", "=", 
+     RowBox[{"Rationalize", "[", "2.0", "]"}]}], ";"}], "\[IndentingNewLine]",
+    "\[IndentingNewLine]", 
+   RowBox[{"(*", "AgX", "*)"}], "\[IndentingNewLine]", 
+   RowBox[{
+    RowBox[{
+     RowBox[{"equationScale", "[", 
+      RowBox[{"xPivot_", ",", "yPivot_", ",", "slopePivot_", ",", "power_"}], 
+      "]"}], ":=", 
+     RowBox[{
+      RowBox[{"(", "\[IndentingNewLine]", 
+       RowBox[{
+        RowBox[{"(", 
+         RowBox[{
+          RowBox[{"(", 
+           RowBox[{"slopePivot", "*", "xPivot"}], ")"}], "^", 
+          RowBox[{"(", 
+           RowBox[{"-", "power"}], ")"}]}], ")"}], " ", "*", 
+        "\[IndentingNewLine]", 
+        RowBox[{"(", 
+         RowBox[{
+          RowBox[{
+           RowBox[{"(", 
+            RowBox[{"slopePivot", " ", "*", 
+             RowBox[{"xPivot", "/", "yPivot"}]}], ")"}], "^", 
+           RowBox[{"(", "power", ")"}]}], "-", "1"}], ")"}]}], 
+       "\[IndentingNewLine]", ")"}], "^", 
+      RowBox[{"(", 
+       RowBox[{
+        RowBox[{"-", "1"}], "/", "power"}], ")"}]}]}], ";"}], 
+   "\[IndentingNewLine]", "\[IndentingNewLine]", 
+   RowBox[{
+    RowBox[{
+     RowBox[{"equationHyperbolic", "[", 
+      RowBox[{"x_", ",", "power_"}], "]"}], ":=", "\[IndentingNewLine]", 
+     RowBox[{"x", "/", 
+      RowBox[{"(", 
+       RowBox[{
+        RowBox[{"(", 
+         RowBox[{"1", " ", "+", " ", 
+          RowBox[{"x", "^", "power"}]}], ")"}], "^", 
+        RowBox[{"(", 
+         RowBox[{"1", "/", "power"}], ")"}]}], ")"}]}]}], ";"}], 
+   "\[IndentingNewLine]", "\[IndentingNewLine]", 
+   RowBox[{
+    RowBox[{
+     RowBox[{"equationTerm", "[", 
+      RowBox[{"x_", ",", "xPivot_", ",", "slopePivot_", ",", "scale_"}], 
+      "]"}], ":=", "\[IndentingNewLine]", 
+     RowBox[{
+      RowBox[{"(", 
+       RowBox[{"slopePivot", "*", 
+        RowBox[{"(", 
+         RowBox[{"x", "-", "xPivot"}], ")"}]}], ")"}], "/", "scale"}]}], 
+    ";"}], "\[IndentingNewLine]", "\[IndentingNewLine]", 
+   RowBox[{
+    RowBox[{
+     RowBox[{"equationCurve", "[", 
+      RowBox[{
+      "x_", ",", "xPivot_", ",", "yPivot_", ",", " ", "slopePivot_", ",", 
+       "scale_"}], "]"}], ":=", "\[IndentingNewLine]", 
+     RowBox[{"If", "[", 
+      RowBox[{
+       RowBox[{"scale", "<", "0"}], ",", "\[IndentingNewLine]", 
+       RowBox[{
+        RowBox[{"scale", "*", 
+         RowBox[{"equationHyperbolic", "[", "\[IndentingNewLine]", 
+          RowBox[{
+           RowBox[{"equationTerm", "[", 
+            RowBox[{"x", ",", "xPivot", ",", "slopePivot", ",", "scale"}], 
+            "]"}], ",", "\[IndentingNewLine]", "kLimitsContrast1"}], 
+          "\[IndentingNewLine]", "]"}]}], "+", "yPivot"}], ",", 
+       "\[IndentingNewLine]", 
+       RowBox[{
+        RowBox[{"scale", "*", 
+         RowBox[{"equationHyperbolic", "[", "\[IndentingNewLine]", 
+          RowBox[{
+           RowBox[{"equationTerm", "[", 
+            RowBox[{"x", ",", "xPivot", ",", "slopePivot", ",", "scale"}], 
+            "]"}], ",", "\[IndentingNewLine]", "kLimitsContrast2"}], 
+          "\[IndentingNewLine]", "]"}]}], "+", "yPivot"}]}], 
+      "\[IndentingNewLine]", "]"}]}], ";"}], "\[IndentingNewLine]", 
+   "\[IndentingNewLine]", 
+   RowBox[{
+    RowBox[{
+     RowBox[{"equationFullCurve", "[", 
+      RowBox[{"x_", ",", "xPivot_", ",", "yPivot_", ",", " ", "slopePivot_"}],
+       "]"}], ":=", 
+     RowBox[{"Module", "[", "\[IndentingNewLine]", 
+      RowBox[{
+       RowBox[{"{", 
+        RowBox[{
+        "scaleXPivot", ",", "scaleYPivot", ",", "toeScale", ",", 
+         "shoulderScale", ",", "scale"}], "}"}], ",", "\[IndentingNewLine]", 
+       RowBox[{
+        RowBox[{"scaleXPivot", ":=", 
+         RowBox[{"If", "[", 
+          RowBox[{
+           RowBox[{"x", ">=", "xPivot"}], ",", 
+           RowBox[{"1", "-", "xPivot"}], ",", "xPivot"}], "]"}]}], ";", 
+        "\[IndentingNewLine]", 
+        RowBox[{"scaleYPivot", ":=", 
+         RowBox[{"If", "[", 
+          RowBox[{
+           RowBox[{"x", ">=", "xPivot"}], ",", 
+           RowBox[{"1", "-", "yPivot"}], ",", "yPivot"}], "]"}]}], ";", 
+        "\[IndentingNewLine]", 
+        RowBox[{"toeScale", ":=", 
+         RowBox[{"equationScale", "[", 
+          RowBox[{
+          "scaleXPivot", ",", "scaleYPivot", ",", "slopePivot", ",", 
+           "kLimitsContrast1"}], "]"}]}], ";", "\[IndentingNewLine]", 
+        RowBox[{"shoulderScale", ":=", 
+         RowBox[{"equationScale", "[", 
+          RowBox[{
+          "scaleXPivot", ",", "scaleYPivot", ",", "slopePivot", ",", 
+           "kLimitsContrast2"}], "]"}]}], ";", "\[IndentingNewLine]", 
+        RowBox[{"scale", ":=", 
+         RowBox[{"If", "[", 
+          RowBox[{
+           RowBox[{"x", ">=", "xPivot"}], ",", "shoulderScale", ",", 
+           RowBox[{"-", "toeScale"}]}], "]"}]}], ";", "\[IndentingNewLine]", 
+        RowBox[{"equationCurve", "[", 
+         RowBox[{
+         "x", ",", "xPivot", ",", "yPivot", ",", "slopePivot", ",", "scale"}],
+          "]"}]}]}], "\[IndentingNewLine]", "]"}]}], ";"}], 
+   "\[IndentingNewLine]", "\[IndentingNewLine]", 
+   RowBox[{"(*", 
+    RowBox[{
+    "Calculate", " ", "OpenColorIO", " ", "allocation", " ", "for", " ", 
+     "log2", " ", "from", " ", "open", " ", "domain", " ", "tristimulus", " ",
+      "value"}], "*)"}], "\[IndentingNewLine]", 
+   RowBox[{
+    RowBox[{
+     RowBox[{"calculateOCIOLog2", "[", 
+      RowBox[{"inEV_", ",", "odMiddleGrey_"}], "]"}], ":=", 
+     "\[IndentingNewLine]", 
+     RowBox[{"Log2", "[", 
+      RowBox[{
+       RowBox[{"2", "^", "inEV"}], "*", "odMiddleGrey"}], "]"}]}], ";"}], 
+   "\[IndentingNewLine]", "\[IndentingNewLine]", 
+   RowBox[{"(*", "Debug", "*)"}], "\[IndentingNewLine]", 
+   RowBox[{"Plot", "[", 
+    RowBox[{
+     RowBox[{"equationFullCurve", "[", 
+      RowBox[{
+      "x", ",", "kAgXXPivot", ",", "kAgXYPivot", ",", " ", 
+       "kGeneralContrast"}], "]"}], ",", 
+     RowBox[{"{", 
+      RowBox[{"x", ",", "0", ",", "1"}], "}"}]}], "]"}], 
+   "\[IndentingNewLine]", 
+   RowBox[{"(*", 
+    RowBox[{"Assuming", " ", "for", " ", "faster", " ", "Simplify"}], "*)"}], 
+   "\[IndentingNewLine]", 
+   RowBox[{"Assuming", "[", 
+    RowBox[{
+     RowBox[{"x", ">=", 
+      RowBox[{"20", "/", "33"}]}], ",", 
+     RowBox[{"Simplify", "[", 
+      RowBox[{"equationFullCurve", "[", 
+       RowBox[{
+       "x", ",", "kAgXXPivot", ",", "kAgXYPivot", ",", " ", 
+        "kGeneralContrast"}], "]"}], "]"}]}], "]"}], "\[IndentingNewLine]", 
+   RowBox[{"Assuming", "[", 
+    RowBox[{
+     RowBox[{"x", "<", 
+      RowBox[{"20", "/", "33"}]}], ",", 
+     RowBox[{"Simplify", "[", 
+      RowBox[{"equationFullCurve", "[", 
+       RowBox[{
+       "x", ",", "kAgXXPivot", ",", "kAgXYPivot", ",", " ", 
+        "kGeneralContrast"}], "]"}], "]"}]}], "]"}], "\[IndentingNewLine]", 
+   RowBox[{"Assuming", "[", 
+    RowBox[{
+     RowBox[{"x", ">=", 
+      RowBox[{"20", "/", "33"}]}], ",", 
+     RowBox[{"N", "[", 
+      RowBox[{
+       RowBox[{"Simplify", "[", 
+        RowBox[{"equationFullCurve", "[", 
+         RowBox[{
+         "x", ",", "kAgXXPivot", ",", "kAgXYPivot", ",", " ", 
+          "kGeneralContrast"}], "]"}], "]"}], ",", "MachinePrecision"}], 
+      "]"}]}], "]"}], "\[IndentingNewLine]", 
+   RowBox[{"Assuming", "[", 
+    RowBox[{
+     RowBox[{"x", "<", 
+      RowBox[{"20", "/", "33"}]}], ",", 
+     RowBox[{"N", "[", 
+      RowBox[{
+       RowBox[{"Simplify", "[", 
+        RowBox[{"equationFullCurve", "[", 
+         RowBox[{
+         "x", ",", "kAgXXPivot", ",", "kAgXYPivot", ",", " ", 
+          "kGeneralContrast"}], "]"}], "]"}], ",", "MachinePrecision"}], 
+      "]"}]}], "]"}], "\[IndentingNewLine]", 
+   RowBox[{"N", "[", 
+    RowBox[{"calculateOCIOLog2", "[", 
+     RowBox[{"kAgXMinEV", ",", 
+      RowBox[{"Rationalize", "[", "0.18", "]"}]}], "]"}], "]"}], 
+   "\[IndentingNewLine]", 
+   RowBox[{"N", "[", 
+    RowBox[{"calculateOCIOLog2", "[", 
+     RowBox[{"kAgXMaxEV", ",", 
+      RowBox[{"Rationalize", "[", "0.18", "]"}]}], "]"}], "]"}], 
+   "\[IndentingNewLine]", "\[IndentingNewLine]", 
+   "\[IndentingNewLine]"}]}]], "Input",
+ CellChangeTimes->{{3.9426297306460953`*^9, 3.9426298006556473`*^9}, {
+   3.9426298642730713`*^9, 3.942629963116497*^9}, {3.9426300178741875`*^9, 
+   3.942630102033333*^9}, {3.9426302595219135`*^9, 3.942630315759001*^9}, 
+   3.9426304145908833`*^9, {3.9426304464059944`*^9, 3.942630484528824*^9}, {
+   3.9426305531075993`*^9, 3.9426305535418186`*^9}, {3.942631398802372*^9, 
+   3.9426316398917522`*^9}, {3.9426316700164146`*^9, 
+   3.9426317211105404`*^9}, {3.9426317903134537`*^9, 3.942631855826317*^9}, {
+   3.9426319121810474`*^9, 3.9426320189876614`*^9}, {3.9426320883459377`*^9, 
+   3.942632285873905*^9}, {3.942632352226942*^9, 3.9426326585641556`*^9}, {
+   3.9426327221252327`*^9, 3.9426334347864265`*^9}, {3.942633544735363*^9, 
+   3.9426335899645996`*^9}, {3.9426338415185375`*^9, 
+   3.9426338446195717`*^9}, {3.9426341482105865`*^9, 
+   3.9426341858675747`*^9}, {3.942634266734604*^9, 3.942634267743925*^9}, {
+   3.942634306950142*^9, 3.942634356308861*^9}, {3.9426344517080746`*^9, 
+   3.9426344792924347`*^9}, {3.9426345567888165`*^9, 3.94263457813315*^9}, {
+   3.9426346308093567`*^9, 3.9426347720437946`*^9}, {3.942634843918415*^9, 
+   3.942634845131283*^9}, {3.9426350119708977`*^9, 3.9426350410092716`*^9}, {
+   3.9426350807575703`*^9, 3.9426350961705513`*^9}, {3.94263518094742*^9, 
+   3.942635183185831*^9}, {3.942635267806862*^9, 3.942635397658827*^9}, {
+   3.942635514261448*^9, 3.9426355153390903`*^9}, {3.942635566518057*^9, 
+   3.942635569380289*^9}, {3.942635607206669*^9, 3.942635683217491*^9}, {
+   3.9426359428718586`*^9, 3.9426359441235867`*^9}, {3.942636035078821*^9, 
+   3.942636035485424*^9}, {3.942636129316929*^9, 3.9426361464804764`*^9}, {
+   3.942636187678486*^9, 3.9426361910780144`*^9}, {3.9426362459153557`*^9, 
+   3.9426362658990116`*^9}, {3.9426363087730274`*^9, 
+   3.9426363479889126`*^9}, {3.942636383441204*^9, 3.9426363884409294`*^9}, {
+   3.9426364256891136`*^9, 3.9426364357430344`*^9}, {3.9426364723488636`*^9, 
+   3.9426364734127445`*^9}, {3.9426365385155697`*^9, 
+   3.9426365753553085`*^9}, {3.942636654343605*^9, 3.942636658719137*^9}, {
+   3.942636697272112*^9, 3.9426366986027203`*^9}, {3.942636954706377*^9, 
+   3.942636954838192*^9}, 3.9426370824588375`*^9, {3.9426372859590073`*^9, 
+   3.942637323502451*^9}, {3.942637369353243*^9, 3.942637543812563*^9}, {
+   3.9426375923175983`*^9, 3.942637616411148*^9}, {3.9426376971172276`*^9, 
+   3.942637745716366*^9}, {3.942637929622757*^9, 3.942637971739519*^9}, {
+   3.942638004066414*^9, 3.9426380688964863`*^9}, {3.942638122723543*^9, 
+   3.94263812422114*^9}},ExpressionUUID->"61d4773b-3f32-5f4c-aff0-\
+971222a185ff"]
+},
+WindowSize->{958, 1005.5},
+WindowMargins->{{Automatic, -4.5}, {Automatic, 0}},
+FrontEndVersion->"14.1 for Microsoft Windows (64-bit) (2024\:5e747\:670816\
+\:65e5)",
+StyleDefinitions->"Default.nb",
+ExpressionUUID->"b15115ff-1096-6f40-9284-d73f10c09389"
+]
+(* End of Notebook Content *)
+
+(* Internal cache information *)
+(*CellTagsOutline
+CellTagsIndex->{}
+*)
+(*CellTagsIndex
+CellTagsIndex->{}
+*)
+(*NotebookFileOutline
+Notebook[{
+Cell[1460, 33, 11642, 275, 1457, "Input",ExpressionUUID->"61d4773b-3f32-5f4c-aff0-971222a185ff"]
+}
+]
+*)
+
