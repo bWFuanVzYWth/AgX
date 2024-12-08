@@ -21,5 +21,11 @@ $$
 
 So, This is the analytical formula of AgX. This is not an approximate value, but an exact value. The complexity of expressions mainly comes from coefficients, and the computational cost in real-time rendering is actually acceptable (At least better than a lookup table). The coefficients have been calculated as machine precision floating-point numbers, some of them came from original AgX, some of them, some of them were calculated by me using Wolfram Mathematica. The significant digits of all coefficients exceed single precision floating-point numbers.  
 
+## ARGUES
+
+1. About `agx_mat`. I re derived the AgX color space matrix and found there is a little difference between origin version and my version. I think (but not sure) that is because I use high-precision to compute this matrix. Anyway, this error is very small.
+2. About **sRGB**. In practice, there is still debate and confusion around whether sRGB data should be displayed with pure 2.2 gamma as defined in the standard, or with the inverse of the OETF. So I provided both versions.
+
 ## TODO
+
 1. LookTransform: "Golden", "Punchy"
