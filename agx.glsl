@@ -70,5 +70,5 @@ vec3 agx_tonemapping(vec3 /*Linear BT.709*/ci) {
     // Inverse input transform (outset)
     co = agx_mat_inv * co;
 
-    return /*Linear BT.709*/co;
+    return /*BT.709 (NOT linear)*/co;
 }
